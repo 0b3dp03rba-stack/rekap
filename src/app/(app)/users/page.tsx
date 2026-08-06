@@ -1,8 +1,8 @@
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
-import { authOptions } from "../../../lib/auth";
-import { prisma } from "../../../lib/prisma";
-import { createUser } from "../../../lib/actions";
+import { authOptions } from "@/lib/auth";
+import { prisma } from "@/lib/prisma";
+import { createUser } from "@/lib/actions";
 
 export const dynamic = "force-dynamic";
 
