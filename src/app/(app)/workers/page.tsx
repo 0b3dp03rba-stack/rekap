@@ -1,7 +1,7 @@
-import { prisma } from "@/lib/prisma";
-import { createWorker, toggleWorkerActive } from "@/lib/actions";
-import { TIER_LABEL } from "@/lib/commission";
-import ToggleActiveButton from "@/components/ToggleActiveButton";
+import { prisma } from "../../../lib/prisma";
+import { createWorker, toggleWorkerActive } from "../../../lib/actions";
+import { TIER_LABEL } from "../../../lib/commission";
+import ToggleActiveButton from "../../../components/ToggleActiveButton";
 
 export const dynamic = "force-dynamic";
 
