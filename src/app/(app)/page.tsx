@@ -1,5 +1,5 @@
-import { prisma } from "@/lib/prisma";
-import { fmtRupiah } from "@/lib/commission";
+import { prisma } from "../../lib/prisma";
+import { fmtRupiah } from "../../lib/commission";
 
 export const dynamic = "force-dynamic";
 

@@ -1,6 +1,6 @@
-import { prisma } from "@/lib/prisma";
-import { createProduct, toggleProductActive } from "@/lib/actions";
-import ToggleActiveButton from "@/components/ToggleActiveButton";
+import { prisma } from "../../../lib/prisma";
+import { createProduct, toggleProductActive } from "../../../lib/actions";
+import ToggleActiveButton from "../../../components/ToggleActiveButton";
 
 export const dynamic = "force-dynamic";
 

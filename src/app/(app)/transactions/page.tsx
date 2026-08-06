@@ -1,7 +1,7 @@
 import Link from "next/link";
-import { prisma } from "@/lib/prisma";
-import { fmtRupiah, RESOLUTION_LABEL, TIER_LABEL } from "@/lib/commission";
-import DeleteOrderButton from "@/components/DeleteOrderButton";
+import { prisma } from "../../../lib/prisma";
+import { fmtRupiah, RESOLUTION_LABEL, TIER_LABEL } from "../../../lib/commission";
+import DeleteOrderButton from "../../../components/DeleteOrderButton";
 
 export const dynamic = "force-dynamic";
 
