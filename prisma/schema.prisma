@@ -1,0 +1,102 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  OWNER
+  ADMIN
+}
+
+enum WorkerTier {
+  JUNIOR
+  SENIOR
+  MASTER
+}
+
+enum Resolution {
+  R64
+  R128
+  R512
+}
+
+// Akun login ke aplikasi (untuk fitur Login)
+model User {
+  id           String   @id @default(cuid())
+  username     String   @unique
+  passwordHash String
+  name         String
+  role         Role     @default(ADMIN)
+  createdAt    DateTime @default(now())
+  orders       Order[]
+}
+
+// Staff admin/CS yang menangani orderan (dipilih di form transaksi)
+model AdminStaff {
+  id        String   @id @default(cuid())
+  name      String
+  active    Boolean  @default(true)
+  createdAt DateTime @default(now())
+  orders    Order[]
+}
+
+// Skin artist / worker, punya tingkatan yang menentukan persen komisi
+model Worker {
+  id        String     @id @default(cuid())
+  name      String
+  tier      WorkerTier @default(JUNIOR)
+  active    Boolean    @default(true)
+  createdAt DateTime   @default(now())
+  orders    Order[]
+}
+
+// Daftar produk, bisa ditambah admin kapan pun (termasuk produk non-skin nanti)
+model Product {
+  id                 String   @id @default(cuid())
+  name               String
+  requiresResolution Boolean  @default(true)
+  active             Boolean  @default(true)
+  createdAt          DateTime @default(now())
+  orders             Order[]
+}
+
+// Satu baris transaksi / rekap
+model Order {
+  id           String      @id @default(cuid())
+  tanggal      DateTime    @db.Date
+  waktu        String
+  catatan      String?
+
+  adminStaffId String
+  adminStaff   AdminStaff  @relation(fields: [adminStaffId], references: [id])
+
+  workerId     String
+  worker       Worker      @relation(fields: [workerId], references: [id])
+
+  productId    String
+  product      Product     @relation(fields: [productId], references: [id])
+
+  resolusi     Resolution?
+
+  harga        Decimal     @db.Decimal(12, 2)
+
+  // Snapshot komisi saat transaksi dibuat (tidak berubah walau tier worker berubah nanti)
+  workerPercent Int
+  workerAmount  Decimal    @db.Decimal(12, 2)
+  adminPercent  Int
+  adminAmount   Decimal    @db.Decimal(12, 2)
+  kasPercent    Int
+  kasAmount     Decimal    @db.Decimal(12, 2)
+  ownerAmount   Decimal    @db.Decimal(12, 2)
+
+  createdByUserId String?
+  createdByUser   User?    @relation(fields: [createdByUserId], references: [id])
+
+  createdAt    DateTime    @default(now())
+
+  @@index([tanggal])
+}
