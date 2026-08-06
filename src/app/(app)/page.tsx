@@ -1,6 +1,8 @@
 import { prisma } from "@/lib/prisma";
 import { fmtRupiah } from "@/lib/commission";
 
+export const dynamic = "force-dynamic";
+
 function startOfToday() {
   const d = new Date();
   d.setHours(0, 0, 0, 0);

@@ -2,6 +2,8 @@ import { prisma } from "@/lib/prisma";
 import { createAdminStaff, toggleAdminStaffActive } from "@/lib/actions";
 import ToggleActiveButton from "@/components/ToggleActiveButton";
 
+export const dynamic = "force-dynamic";
+
 export default async function AdminStaffPage() {
   const staffs = await prisma.adminStaff.findMany({ orderBy: { createdAt: "desc" } });
 

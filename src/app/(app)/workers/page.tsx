@@ -3,6 +3,8 @@ import { createWorker, toggleWorkerActive } from "@/lib/actions";
 import { TIER_LABEL } from "@/lib/commission";
 import ToggleActiveButton from "@/components/ToggleActiveButton";
 
+export const dynamic = "force-dynamic";
+
 export default async function WorkersPage() {
   const workers = await prisma.worker.findMany({ orderBy: { createdAt: "desc" } });
 

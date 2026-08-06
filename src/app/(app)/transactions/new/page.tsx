@@ -1,6 +1,8 @@
 import { prisma } from "@/lib/prisma";
 import OrderForm from "@/components/OrderForm";
 
+export const dynamic = "force-dynamic";
+
 export default async function NewTransactionPage() {
   const [workers, products, adminStaffs] = await Promise.all([
     prisma.worker.findMany({ where: { active: true }, orderBy: { name: "asc" } }),

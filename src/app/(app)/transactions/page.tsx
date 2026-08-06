@@ -3,6 +3,8 @@ import { prisma } from "@/lib/prisma";
 import { fmtRupiah, RESOLUTION_LABEL, TIER_LABEL } from "@/lib/commission";
 import DeleteOrderButton from "@/components/DeleteOrderButton";
 
+export const dynamic = "force-dynamic";
+
 function fmtTanggalIndo(d: Date) {
   const hari = ["Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"];
   const bulan = ["Jan", "Feb", "Mar", "Apr", "Mei", "Jun", "Jul", "Agu", "Sep", "Okt", "Nov", "Des"];
